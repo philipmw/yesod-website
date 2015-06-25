@@ -6,4 +6,4 @@ dependencies:
     - cabal configure --enable-tests
 machine:
   ghc:
-    version: 7.8.4
+    version: 7.10.1
