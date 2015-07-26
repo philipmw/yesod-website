@@ -1,0 +1,5 @@
+version: 0.0
+os: linux
+files:
+  - source: dist/build/yesod-website/yesod-website
+    destination: /opt/yesod-website
