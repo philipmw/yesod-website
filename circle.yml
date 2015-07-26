@@ -11,5 +11,5 @@ deployment:
   staging:
     branch: master
     codedeploy:
-      yesod-hello:
+      yesodhello:
         deployment_group: yesod-hello-dg
