@@ -8,7 +8,7 @@ machine:
   ghc:
     version: 7.10.1
 deployment:
-  production:
+  staging:
     branch: master
     codedeploy:
       yesod-hello:
