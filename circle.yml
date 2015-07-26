@@ -7,3 +7,9 @@ dependencies:
 machine:
   ghc:
     version: 7.10.1
+deployment:
+  production:
+    branch: master
+    codedeploy:
+      yesod-hello:
+        deployment_group: yesod-hello-dg
