@@ -3,9 +3,14 @@
 {-# LANGUAGE QuasiQuotes           #-}
 {-# LANGUAGE TemplateHaskell       #-}
 {-# LANGUAGE TypeFamilies          #-}
+import Prelude hiding (length)
 import Yesod
 import Yesod.Form
-import Data.Text (Text)
+import Data.Text (Text, length, pack)
+import Data.Text.Read (decimal)
+import System.Environment
+import System.IO (hPutStrLn, stderr)
+import System.Exit
 
 data HelloWorld = HelloWorld
 
@@ -44,5 +49,26 @@ postGreetR = do
         FormFailure _ -> defaultLayout [whamlet|Hmm, form failure.|]
         _ -> defaultLayout [whamlet|Hmm, something was wrong.|]
 
+readPort :: IO (Maybe Int)
+readPort = do
+    portStr <- fmap pack $ getEnv "PORT"
+    let eitherPort = decimal portStr
+    case eitherPort of
+        Left error -> do
+            hPutStrLn stderr ("Could not get PORT: " ++ error)
+            return Nothing
+        Right (port, remainder) -> do
+            if (length remainder) > 0 then do
+                hPutStrLn stderr "Port is not an integer"
+                return Nothing
+            else
+                return $ Just port
+
 main :: IO()
-main = warp 3000 HelloWorld
+main = do
+        maybePort <- readPort
+        case maybePort of
+            Nothing -> exitWith $ ExitFailure 1
+            Just port -> do
+                putStrLn $ "Listening on port " ++ show port
+                warp port HelloWorld
