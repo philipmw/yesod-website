@@ -25,3 +25,5 @@ executable yesod-website
                        , yesod-form
   -- hs-source-dirs:      
   default-language:    Haskell2010
+  ld-options:
+    -static
