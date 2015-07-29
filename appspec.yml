@@ -3,8 +3,8 @@ os: linux
 files:
   - source: dist/build/yesod-website/yesod-website
     destination: /opt/yesod-website
-# hooks:
-#   ApplicationStart:
-#     - location: /opt/yesod-website/yesod-website
-#       timeout: 10
-#       runas: root
+hooks:
+  ApplicationStart:
+    - location: /opt/yesod-website/yesod-website
+      timeout: 5
+      runas: root
