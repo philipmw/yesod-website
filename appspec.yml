@@ -5,6 +5,6 @@ files:
     destination: /opt/yesod-website
 hooks:
   ApplicationStart:
-    - location: /opt/yesod-website/yesod-website
+    - location: scripts/launch_with_codedeploy.sh
       timeout: 5
       runas: root
