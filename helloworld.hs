@@ -6,6 +6,7 @@
 import Prelude hiding (length)
 import Yesod
 import Yesod.Form
+import Yesod.Static
 import Control.Exception (tryJust)
 import Control.Monad (guard)
 import Data.Text (Text, length, pack)
@@ -15,11 +16,16 @@ import System.IO (hPutStrLn, stderr)
 import System.Exit
 import System.IO.Error (isDoesNotExistError)
 
-data HelloWorld = HelloWorld
+staticFiles "assets"
+
+data HelloWorld = HelloWorld {
+                    getStatic :: Static
+                  }
 
 mkYesod "HelloWorld" [parseRoutes|
 / HomeR GET
 /greet GreetR POST
+/assets StaticR Static getStatic
 |]
 
 instance Yesod HelloWorld
@@ -37,6 +43,8 @@ getHomeR = do
             <form method=post action=@{GreetR} enctype=#{enctype}>
                 ^{personFormWidget}
                 <input type="submit"/>
+            <p>
+                <img src=@{StaticR aws_png}>
         |]
 
 data Person = Person { personName :: Text } deriving Show
@@ -79,4 +87,5 @@ main :: IO()
 main = do
         port <- readPort
         putStrLn $ "Listening on port " ++ show port
-        warp port HelloWorld
+        static@(Static settings) <- static "assets"
+        warp port $ HelloWorld static

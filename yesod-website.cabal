@@ -26,6 +26,7 @@ executable yesod-website
                        , text
                        , yesod
                        , yesod-form
+                       , yesod-static
   -- hs-source-dirs:      
   default-language:    Haskell2010
   if flag(static)
