@@ -4,7 +4,11 @@ files:
   - source: dist/build/yesod-website/yesod-website
     destination: /opt/yesod-website
 hooks:
+  ApplicationStop:
+    - location: scripts/codedeploy_appstop.sh
+      timeout: 10
+      runas: root
   ApplicationStart:
-    - location: scripts/launch_with_codedeploy.sh
+    - location: scripts/codedeploy_appstart.sh
       timeout: 5
       runas: root
