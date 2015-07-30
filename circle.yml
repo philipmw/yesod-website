@@ -6,7 +6,7 @@ dependencies:
     - cabal configure --enable-tests --flags=static
 machine:
   ghc:
-    version: 7.10.1
+    version: 7.10.2
 deployment:
   staging:
     branch: master
