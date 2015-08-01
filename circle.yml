@@ -4,12 +4,12 @@ dependencies:
     # CircleCI is using Ubuntu 12.04 'Precise'
     - echo 'deb http://download.fpcomplete.com/ubuntu/precise stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
     - sudo apt-get update && sudo apt-get install stack -y
-    - scripts/circleci-mirror.sh
     - stack init
     # - cabal update
     # - cabal sandbox init
     # - cabal install --upgrade-dependencies --constraint="template-haskell installed" --dependencies-only --enable-tests --reorder-goals --max-backjumps=-1
-    - stack build
+    # - stack build
+    - scripts/stack-build-with-retries.sh
     # - cabal configure --enable-tests --flags=static
 machine:
   ghc:
