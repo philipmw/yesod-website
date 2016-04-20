@@ -1,15 +1,11 @@
 dependencies:
   override:
+    # https://www.fpcomplete.com/blog/2015/08/new-in-depth-guide-stack
     - wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | sudo apt-key add -
-    # CircleCI is using Ubuntu 12.04 'Precise'
-    - echo 'deb http://download.fpcomplete.com/ubuntu/precise stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
+    - echo 'deb http://download.fpcomplete.com/ubuntu/trusty stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
     - sudo apt-get update && sudo apt-get install stack -y
     - stack setup
     - stack build
-machine:
-  ghc:
-    # https://circleci.com/docs/build-image-precise/#haskell
-    version: 7.10.2
 deployment:
   staging:
     branch: master
