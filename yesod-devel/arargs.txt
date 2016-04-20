@@ -1,0 +1,1 @@
+["-r","-s","-c","dist/build/objs-40679/libHSyesod-website-0.1.0.0-J30d8iNjaKS99dxDUkr4Bd.a","dist/build/Application.o","dist/build/Foundation.o","dist/build/Import.o","dist/build/Import/NoFoundation.o","dist/build/Settings.o","dist/build/Settings/StaticFiles.o","dist/build/Handler/Common.o","dist/build/Handler/Home.o","dist/build/Handler/Comment.o"]

@@ -5,15 +5,10 @@ dependencies:
     - echo 'deb http://download.fpcomplete.com/ubuntu/precise stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
     - sudo apt-get update && sudo apt-get install stack -y
     - stack init
-    # - cabal update
-    # - cabal sandbox init
-    # - cabal install --upgrade-dependencies --constraint="template-haskell installed" --dependencies-only --enable-tests --reorder-goals --max-backjumps=-1
-    # - stack build
     - scripts/stack-build-with-retries.sh
-    # - cabal configure --enable-tests --flags=static
 machine:
   ghc:
-    version: 7.8.4
+    version: 7.10.3
 deployment:
   staging:
     branch: master
